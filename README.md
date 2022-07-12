@@ -3,8 +3,8 @@
 Tutorial link: https://www.youtube.com/watch?v=01sAkU_NvOY
 
 ## ⭐️ Course Contents ⭐️
-⌨️ (0:00:00) Intro \n
-⌨️ (0:01:18) Chapter 1 - Hand Tracking - Basics 
+⌨️ (0:00:00) Intro 
+⌨️ (0:01:18) Chapter 1 - Hand Tracking - Basics <br>
 ⌨️ (0:26:57) Chapter 1 - Hand Tracking - Module
 ⌨️ (0:49:20) Chapter 2 - Pose Estimation - Basics
 ⌨️ (1:08:25) Chapter 2 - Pose Estimation - Module
