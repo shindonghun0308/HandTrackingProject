@@ -1,0 +1,36 @@
+import cv2
+import mediapipe as mp
+import time
+
+cap = cv2.VideoCapture(0)
+# open a cam for video capturing
+
+mpHands = mp.solutions.hands
+hands = mpHands.Hands() #keep defualt values of the function
+
+mpDraw = mp.solutions.drawing_utils #method to draw the lines between the points
+
+cTime = 0 # initialising current & previous time = 0
+pTime = 0
+while True:
+    success, img = cap.read()
+    #returns a tuple 1st = success/not for reading captured, 2nd = img being captured
+
+    imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    results = hands.process(imgRGB) # processing, but not implemented
+
+    if results.multi_hand_landmarks: #when there are hands seen in the video
+        for handLms in results.multi_hand_landmarks: #for each hand
+            mpDraw.draw_landmarks(img, handLms, mpHands.HAND_CONNECTIONS)
+            # para handLms is the landmarks in each hand, 3rd para is making the connections in the hand
+
+    cTime = time.time() # current time
+    fps = 1/(cTime-pTime) #calculate refresh rate ie. how fast the while loop runs
+    pTime = cTime
+
+    cv2.putText(img, str(int(fps)), (10, 70), cv2.FONT_HERSHEY_PLAIN,
+                3, (255,0,255), 3)
+    # the image, the text, position, font, font scale, color, thickness
+
+    cv2.imshow("Image", img) #display image (window name, image variable)
+    cv2.waitKey(1) #display window for "1" milisec, or till user quit
