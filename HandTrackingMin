@@ -21,6 +21,24 @@ while True:
 
     if results.multi_hand_landmarks: #when there are hands seen in the video
         for handLms in results.multi_hand_landmarks: #for each hand
+            for id, lm in enumerate(handLms.landmark): #id --> point number, lm --> landmark
+                # print(id, lm) --> this gives the coordinates in decimal (ratio for position)
+                h, w, c = img.shape #height, width, channel
+                cx, cy = int(lm.x*w), int(lm.y*h)
+                print("id: " + str(id) + ";     position: x = " + str(cx) + ", y = " + str(cy) +";")
+                if id == 0:
+                    cv2.circle(img, (cx, cy), 15, (255,0,255), cv2.FILLED) #making id =0 to be purple big circle
+
+            # what is enumerate()
+            # languages = ['Python', 'Java', 'JavaScript']
+            #
+            # enumerate_prime = enumerate(languages)
+            #
+            # # convert enumerate object to list
+            # print(list(enumerate_prime))
+
+            # Output: [(0, 'Python'), (1, 'Java'), (2, 'JavaScript')]
+
             mpDraw.draw_landmarks(img, handLms, mpHands.HAND_CONNECTIONS)
             # para handLms is the landmarks in each hand, 3rd para is making the connections in the hand
 
